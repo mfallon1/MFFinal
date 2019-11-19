@@ -13,7 +13,10 @@ namespace MFFinal
 
         public EditCat()
         {
-            var db = new NorthwindContext();  //
+            var db = new NorthwindContext();
+            string newname;
+            string newdesc;
+            //
             Console.WriteLine("Select the category you want to edit:");
 
             int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
@@ -32,25 +35,32 @@ namespace MFFinal
             // get the record
             Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id); // get the record context - is connected to the database - have to get the context first to update it
             Console.WriteLine($"You chose {category.CategoryName} - {category.Description}");
+            logger.Info($" {category.CategoryName} - {category.Description}");
 
             Console.WriteLine("Edit Category Name? Y/N");
             string edit = Console.ReadLine();
+            logger.Info($"{edit}");
+
 
             if (edit.ToLower() == "y")
             { 
                 Console.WriteLine("Enter a new Category name");
-                var newname = Console.ReadLine(); // get the name 
+                newname = Console.ReadLine(); // get the name 
+                logger.Info($"{newname}");
+                category.CategoryName = newname;
             }
 
             Console.WriteLine("Edit Category Description? Y/N");
             edit = Console.ReadLine();
+            logger.Info($"{edit}");
 
             if (edit.ToLower() == "y")
             {
                 Console.WriteLine("Enter new Category description");
-                var newdesc = Console.ReadLine();
-            logger.Info($"{newname}");
-            category.CategoryName = newname;
+                newdesc = Console.ReadLine();
+                category.Description = newdesc;
+                logger.Info($"{newdesc}");
+            }
             // update naem and db - this works because we have it from above
             //    db.Categories.Add(category);
             db.SaveChanges();
