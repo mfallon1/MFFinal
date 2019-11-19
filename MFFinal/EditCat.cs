@@ -33,9 +33,22 @@ namespace MFFinal
             Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id); // get the record context - is connected to the database - have to get the context first to update it
             Console.WriteLine($"You chose {category.CategoryName} - {category.Description}");
 
-            Console.WriteLine("Enter a new Category name");
-            var newname = Console.ReadLine(); // get the name 
-            Console.WriteLine("Enter new Category description");
+            Console.WriteLine("Edit Category Name? Y/N");
+            string edit = Console.ReadLine();
+
+            if (edit.ToLower() == "y")
+            { 
+                Console.WriteLine("Enter a new Category name");
+                var newname = Console.ReadLine(); // get the name 
+            }
+
+            Console.WriteLine("Edit Category Description? Y/N");
+            edit = Console.ReadLine();
+
+            if (edit.ToLower() == "y")
+            {
+                Console.WriteLine("Enter new Category description");
+                var newdesc = Console.ReadLine();
             logger.Info($"{newname}");
             category.CategoryName = newname;
             // update naem and db - this works because we have it from above
