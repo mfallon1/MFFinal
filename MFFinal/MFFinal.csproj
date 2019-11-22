@@ -72,6 +72,11 @@
     <Compile Include="Models\NorthwindContext.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Prod\AddProd.cs" />
+    <Compile Include="Prod\DeleteProd.cs" />
+    <Compile Include="Prod\DisplayAllProd.cs" />
+    <Compile Include="Prod\DisplayProd.cs" />
+    <Compile Include="Prod\EditProd.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +84,9 @@
     <None Include="App.config" />
     <None Include="Nlog.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
