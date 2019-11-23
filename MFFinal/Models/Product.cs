@@ -13,10 +13,14 @@ namespace MFFinal.Models
 
         [Required(ErrorMessage = "** Product Name must be entered")]
         public string ProductName { get; set; }
+        [Required(ErrorMessage = "** Quantity Per Unit must be entered")]
         public string QuantityPerUnit { get; set; }
         public decimal? UnitPrice { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Units In Stock can be 0, Please enter valid integer Number")]
         public Int16? UnitsInStock { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Units On Order can be 0, Please enter valid integer Number")]
         public Int16? UnitsOnOrder { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Reorder Level can be 0, Please enter valid integer Number")]
         public Int16? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
 

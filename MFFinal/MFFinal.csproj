@@ -61,12 +61,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCat.cs" />
-    <Compile Include="DisplayAllCatProd.cs" />
-    <Compile Include="DisplayCat.cs" />
-    <Compile Include="DisplayCatProd.cs" />
-    <Compile Include="EditCat.cs" />
-    <Compile Include="GetProductCount.cs" />
+    <Compile Include="CategoryMain.cs" />
+    <Compile Include="CategoryMenu.cs" />
+    <Compile Include="Cat\AddCat.cs" />
+    <Compile Include="Cat\DisplayAllCatProd.cs" />
+    <Compile Include="Cat\DisplayCat.cs" />
+    <Compile Include="Cat\DisplayCatProd.cs" />
+    <Compile Include="Cat\EditCat.cs" />
+    <Compile Include="ProductMain.cs" />
+    <Compile Include="ProductMenu.cs" />
+    <Compile Include="Prod\GetProductCount.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\NorthwindContext.cs" />
@@ -85,9 +89,7 @@
     <None Include="Nlog.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cat\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

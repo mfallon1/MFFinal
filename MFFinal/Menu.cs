@@ -14,12 +14,8 @@ namespace MFFinal
             Console.WriteLine();
             Console.WriteLine("NORTHWIND Category & Products - What would you like to do?");
             Console.WriteLine();
-            Console.WriteLine("1) Display Categories");
-            Console.WriteLine("2) Add Category");
-            Console.WriteLine("3) Display Category and related products");
-            Console.WriteLine("4) Display all Categories and their related products");
-            Console.WriteLine("5) Edit Category");
-            Console.WriteLine("6) Delete Category all Categories and their related products");
+            Console.WriteLine("1) Work with Categories");
+            Console.WriteLine("2) Work with Products");
             Console.WriteLine("\"q\" to quit");
             Console.WriteLine();
 

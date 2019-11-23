@@ -19,6 +19,7 @@ namespace MFFinal
             do
             {
                 var menu = new Menu();  // display the menu and return the selection
+
                 selection = char.ToLower(menu.GetInput());
                 if (selection.Equals('q'))
                 {
@@ -27,31 +28,14 @@ namespace MFFinal
                 choice = selection.ToString();
                 logger.Info("User choice: {Choice}", choice);
 
-                if (choice == "1") // display the categories
+                if (choice == "1") //  categories
                 {
-                    DisplayCat displayCat = new DisplayCat(); 
+                    var categorymain = new CategoryMain();
                 }
-
-                else if (choice == "2") // Add a category
+                else if (choice == "2") // Products
                 {
-                    AddCat addCat = new AddCat(); 
+                    var productmain = new ProductMain();
                 }
-
-                else if (choice == "3")  // Display the category and its products
-                {
-                    DisplayCatProd displayCatProd = new DisplayCatProd();  
-                }
-
-                else if (choice == "4")
-                {
-                    DisplayAllCatProd displayAllCatProd = new DisplayAllCatProd();  // Display all categories and related products
-                }
-
-                else if (choice == "5")
-                {
-                    EditCat editCat = new EditCat();  // Edit a category
-                }
-
 
             } while (!selection.Equals('q'));
         }
