@@ -20,33 +20,34 @@ namespace MFFinal
                 {
                     break;
                 }
+                selection = char.ToLower(productmenu.GetProdInput());
                 choice = selection.ToString();
                 logger.Info("User choice: {Choice}", choice);
 
                 if (choice == "1") // display the categories
                 {
-                    DisplayCat displayCat = new DisplayCat();
+                    Prod.DisplayAllProd displayallProd = new Prod.DisplayAllProd();
                 }
 
                 else if (choice == "2") // Add a category
                 {
-                    AddCat addCat = new AddCat();
+                    Prod.AddProd addProd = new Prod.AddProd();
                 }
 
                 else if (choice == "3")  // Display the category and its products
                 {
-                    DisplayCatProd displayCatProd = new DisplayCatProd();
+                    Prod.DisplayProd displayProd = new Prod.DisplayProd();
                 }
 
                 else if (choice == "4")
                 {
-                    DisplayAllCatProd displayAllCatProd = new DisplayAllCatProd();  // Display all categories and related products
+                    Prod.EditProd editProd = new Prod.EditProd();  // Edit a product
                 }
 
-                else if (choice == "5")
-                {
-                    EditCat editCat = new EditCat();  // Edit a category
-                }
+                //else if (choice == "5")
+                //{
+                //    EditCat editCat = new EditCat();  // Edit a category
+                //}
 
 
             } while (!selection.Equals('q'));

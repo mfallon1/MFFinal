@@ -19,7 +19,6 @@ namespace MFFinal
             do
             {
                 var menu = new Menu();  // display the menu and return the selection
-
                 selection = char.ToLower(menu.GetInput());
                 if (selection.Equals('q'))
                 {

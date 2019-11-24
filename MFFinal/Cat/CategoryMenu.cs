@@ -24,5 +24,35 @@ namespace MFFinal
 
             // input selection
         }
+        public char GetCatInput()
+        {
+            char selection;
+
+            while (!IsItValid(Console.ReadKey(true).KeyChar, out selection))
+            {
+
+                Console.WriteLine($"Invalid input: {selection}");
+                Console.WriteLine();
+                Console.WriteLine("Please enter a valid menu choice");
+                Console.Write("");
+            }
+
+            Console.WriteLine();
+            return selection;
+
+        }
+
+        private bool IsItValid(char input, out char selection) //validation
+        {
+            char[] validValues = { '1', '2', '3', '4', '5', '6', 'Q', 'q' };
+            selection = input;
+            if (validValues.Contains(input))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

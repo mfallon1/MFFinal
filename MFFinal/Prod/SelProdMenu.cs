@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace MFFinal
+namespace MFFinal.Prod
 {
-    internal class Menu
+    internal class SelProdMenu
     {
-        public Menu()
+        public SelProdMenu()
         {
-            // display choices to user
             Console.WriteLine();
-            Console.WriteLine("NORTHWIND Category & Products - What would you like to do?");
+            Console.WriteLine("NORTHWIND Products - Do you want to see:");
             Console.WriteLine();
-            Console.WriteLine("1) Work with Categories");
-            Console.WriteLine("2) Work with Products");
+            Console.WriteLine("1) All Products");
+            Console.WriteLine("2) Active Products");
+            Console.WriteLine("3) Discontinued Products");
             Console.WriteLine("\"q\" to quit");
             Console.WriteLine();
 
             // input selection
         }
 
-        public char GetInput()
+        public char GetSelInput()
         {
             char selection;
 
-            while (!IsSelValid(Console.ReadKey(true).KeyChar, out selection))
+            while (!IsPrSelValid(Console.ReadKey(true).KeyChar, out selection))
             {
 
                 Console.WriteLine($"Invalid input: {selection}");
@@ -40,9 +39,9 @@ namespace MFFinal
 
         }
 
-        private bool IsSelValid(char input, out char selection) //validation
+        private bool IsPrSelValid(char input, out char selection) //validation
         {
-            char[] validValues = { '1', '2', '3', '4', '5','6','Q', 'q' };
+            char[] validValues = { '1', '2', '3', 'q' };
             selection = input;
             if (validValues.Contains(input))
             {
@@ -51,6 +50,6 @@ namespace MFFinal
 
             return false;
         }
-
     }
+   
 }

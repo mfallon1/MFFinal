@@ -61,15 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryMain.cs" />
-    <Compile Include="CategoryMenu.cs" />
+    <Compile Include="Cat\CategoryMain.cs" />
+    <Compile Include="Cat\CategoryMenu.cs" />
     <Compile Include="Cat\AddCat.cs" />
     <Compile Include="Cat\DisplayAllCatProd.cs" />
     <Compile Include="Cat\DisplayCat.cs" />
     <Compile Include="Cat\DisplayCatProd.cs" />
     <Compile Include="Cat\EditCat.cs" />
-    <Compile Include="ProductMain.cs" />
-    <Compile Include="ProductMenu.cs" />
+    <Compile Include="Prod\ProductMain.cs" />
+    <Compile Include="Prod\ProductMenu.cs" />
     <Compile Include="Prod\GetProductCount.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Models\Category.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Prod\DisplayAllProd.cs" />
     <Compile Include="Prod\DisplayProd.cs" />
     <Compile Include="Prod\EditProd.cs" />
+    <Compile Include="Prod\SelProdMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

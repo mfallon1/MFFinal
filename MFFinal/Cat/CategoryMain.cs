@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace MFFinal
 {
     internal class CategoryMain
@@ -16,6 +17,7 @@ namespace MFFinal
             do
             {
                 var categorymenu = new CategoryMenu();
+                selection = char.ToLower(categorymenu.GetCatInput());
                 if (selection.Equals('q'))
                 {
                     break;
@@ -24,6 +26,7 @@ namespace MFFinal
                 logger.Info("User choice: {Choice}", choice);
 
                 if (choice == "1") // display the categories
+
                 {
                     DisplayCat displayCat = new DisplayCat();
                 }
