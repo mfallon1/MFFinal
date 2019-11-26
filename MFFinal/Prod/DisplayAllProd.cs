@@ -37,11 +37,13 @@ namespace MFFinal.Prod
                 {
                     query = db.Products.Where(p => !p.Discontinued )
                                             .OrderBy(p => p.ProductName);
+                    break;
                 }
                 else if (choice == "3") // Products discontinued
                 {
                     query = db.Products.Where(p => p.Discontinued)
                                             .OrderBy(p => p.ProductName);
+                    break;
                 }
 
             } while (!selection.Equals('q'));
@@ -49,7 +51,7 @@ namespace MFFinal.Prod
 
 
 
-            Console.WriteLine($"There are {query.Count()} Products:");
+            Console.WriteLine($"****  There are {query.Count()} Products:");
             foreach (var item in query)
             {
                 string active = "Active";

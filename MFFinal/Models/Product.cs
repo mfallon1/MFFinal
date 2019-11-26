@@ -11,6 +11,7 @@ namespace MFFinal.Models
     {
         public int ProductID { get; set; }
 
+
         [Required(ErrorMessage = "** Product Name must be entered")]
         public string ProductName { get; set; }
         [Required(ErrorMessage = "** Quantity Per Unit must be entered")]
@@ -24,7 +25,9 @@ namespace MFFinal.Models
         public Int16? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
 
+        [Required(ErrorMessage = "** Category Id must be entered")]
         public int? CategoryId { get; set; }
+        [Required(ErrorMessage = "** Supplier Id must be entered")]
         public int? SupplierId { get; set; }
 
         public virtual Category Category { get; set; }
