@@ -10,6 +10,8 @@ namespace MFFinal
     internal class AddCat
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+
         public AddCat()
         {
             Category category = new Category();

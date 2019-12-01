@@ -11,6 +11,10 @@ namespace MFFinal.Prod
     internal class AddProd
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        string price;
+        string sunits;
+
+        bool badentry = true;
         public AddProd()
         {
             var db = new NorthwindContext();
@@ -28,10 +32,110 @@ namespace MFFinal.Prod
             logger.Info($"SupplierId {id} selected");
 
             Product product = new Product();
-            Console.WriteLine("Enter Product Name:");
+            Console.WriteLine("Product Name:");
             product.ProductName = Console.ReadLine();
-            Console.WriteLine("Enter the Product Description:");
-            //product.Description = Console.ReadLine();
+            Console.WriteLine("Enter the Quantity Per Unit - Example 24 per box:");
+            product.QuantityPerUnit = Console.ReadLine();
+            try
+            {
+                //do
+                //{
+                    Console.WriteLine("Unit Price as 0.00:");
+                    price = Console.ReadLine();
+                    decimal decprice;
+
+                    if (Decimal.TryParse(price, out decprice))
+                    {
+                        logger.Info($"Good Price Entered {price}");
+                        product.UnitPrice = decprice;
+                        //badentry = false;
+                    }
+                    else
+                        Console.WriteLine("Not a Decimal");
+
+                //    //string Abprice = Math.Abs(price);
+                //} while (badentry);
+            }
+            catch
+            {
+                logger.Info($"bad Price Entered {price}");
+                Console.WriteLine("Not a Decimal");
+            }
+
+            try
+            {
+                Console.WriteLine("Enter the number of Units In Stock:");
+                sunits = Console.ReadLine();
+                Int16 intunits;
+
+                if (Int16.TryParse(sunits, out intunits))
+                {
+                    logger.Info($"Units In Stock {sunits}");
+                    product.UnitsInStock = intunits;
+                }
+                else
+                    logger.Info($"bad Units in Stock Entered {sunits}");
+                    Console.WriteLine("Not an Integer");
+            }
+            catch
+            {
+                Console.WriteLine("Not an Integer");
+                logger.Info($"not an integer Units In Stock {sunits}");
+            }
+
+
+            try
+            {
+                Console.WriteLine("Enter the number of Units On Order:");
+                sunits = Console.ReadLine();
+                Int16 intunits;
+
+                if (Int16.TryParse(sunits, out intunits))
+                {
+                    logger.Info($"Units On Order {sunits}");
+                    product.UnitsOnOrder = intunits;
+                }
+                else
+                    logger.Info($"bad Units On Order Entered {sunits}");
+                Console.WriteLine("Not an Integer");
+            }
+            catch
+            {
+                Console.WriteLine("Not an Integer");
+                logger.Info($"bad Units On Order Entered {sunits}");
+            }
+
+
+            try
+            {
+                Console.WriteLine("Enter the number for Reorder Level:");
+                sunits = Console.ReadLine();
+                Int16 intunits;
+
+                if (Int16.TryParse(sunits, out intunits))
+                {
+                    logger.Info($"Reorder Level {sunits}");
+                    product.ReorderLevel = intunits;
+                }
+                else
+                    logger.Info($"bad Reorder Level {sunits}");
+                Console.WriteLine("Not an Integer");
+            }
+            catch
+            {
+                Console.WriteLine("Not an Integer");
+                logger.Info($"bad Reorder Level {sunits}");
+            }
+
+            product.Discontinued = false;
+            Console.WriteLine("Is the Item Discontinued?  Y/N");
+            string disc = Console.ReadLine();
+            disc = disc.ToLower();
+            if (disc == "y")
+            {
+                product.Discontinued = true;               
+            }
+
 
             ValidationContext context = new ValidationContext(product, null, null); // what do I want to validate? = product put product in our context
             List<ValidationResult> results = new List<ValidationResult>();
@@ -39,10 +143,10 @@ namespace MFFinal.Prod
         var isValid = Validator.TryValidateObject(product, context, results, true); // validate product and return it to results = bool
             if (isValid)
             {
-                var db = new NorthwindContext();
+                 db = new NorthwindContext();
                 db.Products.Add(product);
                 var erro = db.GetValidationErrors();
-                if (erro.Any()) //added in class
+                if (erro.Any()) 
                 {
                     Console.WriteLine(erro);
                 }
@@ -54,9 +158,11 @@ namespace MFFinal.Prod
                     isValid = false;
                     results.Add(new ValidationResult("Name exists", new string[] { "ProductName" }));
                 }
-                else
+                else 
+
                 {
                     logger.Info("Validation passed");
+
                     db.SaveChanges();
                 }
             }
