@@ -13,27 +13,51 @@ namespace MFFinal.Prod
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         string price;
         string sunits;
+        static string s;
 
         bool badentry = true;
         public AddProd()
         {
             var db = new NorthwindContext();
+            Product product = new Product();
 
+            Console.WriteLine("Northwind Products - Add a Product\n");
             Console.WriteLine("Enter the Category Id for this product:");
 
             int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
             Console.Clear();
             logger.Info($"CategoryId {id} selected");
+            product.CategoryId = id;
 
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"CategoryId {id} selected\n");
             Console.WriteLine("Enter the Supplier Id for this product:");
 
             int sid = int.Parse(DisplaySup.DisplaySupSel()); // display the list of Suppliers
             Console.Clear();
-            logger.Info($"SupplierId {id} selected");
+            logger.Info($"SupplierId {sid} selected");
+            product.SupplierId = sid;
 
-            Product product = new Product();
+            Console.Clear();
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Category Id: {id}, Supplier Id: {sid}\n");
+
+            //Product product = new Product();
+            do
+            { 
             Console.WriteLine("Product Name:");
-            product.ProductName = Console.ReadLine();
+
+            s = Console.ReadLine();
+                if (CustomMethod.IsBlank(s))
+                {
+                    Console.WriteLine("\t**Must enter something");
+                    logger.Info("blank Name entered");
+                }
+                else
+                    product.ProductName = s;
+            }
+            while (CustomMethod.IsBlank(s));
+
             Console.WriteLine("Enter the Quantity Per Unit - Example 24 per box:");
             product.QuantityPerUnit = Console.ReadLine();
             try
@@ -74,8 +98,10 @@ namespace MFFinal.Prod
                     product.UnitsInStock = intunits;
                 }
                 else
+                { 
                     logger.Info($"bad Units in Stock Entered {sunits}");
                     Console.WriteLine("Not an Integer");
+                }
             }
             catch
             {
@@ -84,26 +110,28 @@ namespace MFFinal.Prod
             }
 
 
-            try
-            {
+            //try
+            //{
                 Console.WriteLine("Enter the number of Units On Order:");
                 sunits = Console.ReadLine();
-                Int16 intunits;
+                Int16 intnunits;
 
-                if (Int16.TryParse(sunits, out intunits))
+                if (Int16.TryParse(sunits, out intnunits))
                 {
                     logger.Info($"Units On Order {sunits}");
-                    product.UnitsOnOrder = intunits;
+                    product.UnitsOnOrder = intnunits;
                 }
-                else
-                    logger.Info($"bad Units On Order Entered {sunits}");
-                Console.WriteLine("Not an Integer");
-            }
-            catch
-            {
-                Console.WriteLine("Not an Integer");
-                logger.Info($"bad Units On Order Entered {sunits}");
-            }
+            //    else
+            //    { 
+            //        //logger.Info($"bad Units On Order Entered {sunits}");
+            //        //Console.WriteLine("Not an Integer");
+            //    }
+            //}
+            //catch
+            //{
+            //    Console.WriteLine("Not an Integer");
+            //    logger.Info($"bad Units On Order Entered {sunits}");
+            //}
 
 
             try
@@ -118,8 +146,9 @@ namespace MFFinal.Prod
                     product.ReorderLevel = intunits;
                 }
                 else
-                    logger.Info($"bad Reorder Level {sunits}");
-                Console.WriteLine("Not an Integer");
+                { }
+                //    logger.Info($"bad Reorder Level {sunits}");
+                //Console.WriteLine("Not an Integer");
             }
             catch
             {
@@ -156,7 +185,7 @@ namespace MFFinal.Prod
                 {
                     // generate validation error
                     isValid = false;
-                    results.Add(new ValidationResult("Name exists", new string[] { "ProductName" }));
+                    results.Add(new ValidationResult("****Sorry this Product Name exists - Please try again ", new string[] {"ProductName"}));
                 }
                 else 
 
@@ -164,10 +193,13 @@ namespace MFFinal.Prod
                     logger.Info("Validation passed");
 
                     db.SaveChanges();
+                    Console.Clear();
                 }
             }
+
             if (!isValid)
             {
+                Console.WriteLine("* PRODUCT NOT ADDED *");
                 foreach (var result in results)
                 {
                     logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}");

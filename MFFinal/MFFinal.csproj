@@ -68,6 +68,7 @@
     <Compile Include="Cat\DisplayCat.cs" />
     <Compile Include="Cat\DisplayCatProd.cs" />
     <Compile Include="Cat\EditCat.cs" />
+    <Compile Include="CustomMethod.cs" />
     <Compile Include="DisplaySup.cs" />
     <Compile Include="Prod\ProductMain.cs" />
     <Compile Include="Prod\ProductMenu.cs" />
