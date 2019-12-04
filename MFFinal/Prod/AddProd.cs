@@ -21,13 +21,30 @@ namespace MFFinal.Prod
             var db = new NorthwindContext();
             Product product = new Product();
 
-            Console.WriteLine("Northwind Products - Add a Product\n");
-            Console.WriteLine("Enter the Category Id for this product:");
+            do
+            {
 
-            int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
-            Console.Clear();
-            logger.Info($"CategoryId {id} selected");
-            product.CategoryId = id;
+                Console.WriteLine("Northwind Products - Add a Product\n");
+                Console.WriteLine("Enter the Category Id for this product:");
+
+                s = DisplayCat.DispCatSel(); // display the list of categories
+
+                if (CustomMethod.IsBlank(s))
+                {
+                    Console.WriteLine("\t**Must enter something");
+                    logger.Info("blank Name entered");
+                }
+                else 
+                {
+                    int id = Int16.Parse(s); // display the list of categories
+                    if (db.Products.Any(p => p.ProductID == s)
+                }
+
+                Console.Clear();
+                logger.Info($"CategoryId {id} selected");
+                product.CategoryId = id;
+            } while (CustomMethod.IsBlank(s));
+
 
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"CategoryId {id} selected\n");
