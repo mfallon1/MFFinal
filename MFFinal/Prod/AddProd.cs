@@ -40,7 +40,7 @@ namespace MFFinal.Prod
                     else
                     {
                         id = Int16.Parse(s); // try to parse
-                        if (db.Categories.Any(p => p.CategoryId == id))
+                        if (db.Categories.Any(p => p.CategoryId == id)) //validate the ID entered
                         {
                             Console.Clear();
                             logger.Info($"CategoryId {id} selected");
@@ -60,7 +60,6 @@ namespace MFFinal.Prod
                     logger.Info($"incorrect CategoryId selected");
                     Console.WriteLine("** Incorrect CategoryID selected");
                 }
-            
             } while (badentry == true);
 
 
@@ -83,7 +82,7 @@ namespace MFFinal.Prod
                     else
                     {
                         sid = Int16.Parse(s); // try to parse
-                        if (db.Suppliers.Any(p => p.SupplierId == sid))
+                        if (db.Suppliers.Any(p => p.SupplierId == sid)) //validate the ID entered
                         {
                             Console.Clear();
                             logger.Info($"SupplierId {sid} selected");
@@ -108,12 +107,12 @@ namespace MFFinal.Prod
 
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
-            Console.WriteLine($"Category Id: {id}, Supplier Id: {sid}\n");
+            Console.WriteLine($"Category Id: {id} Supplier Id: {sid}\n");
 
-            //Product product = new Product();
+
             do
             { 
-            Console.WriteLine("Product Name:");
+            Console.WriteLine("Product Name:");  //validate the product name
 
             s = Console.ReadLine();
                 if (CustomMethod.IsBlank(s))
@@ -123,16 +122,29 @@ namespace MFFinal.Prod
                 }
                 else
                     product.ProductName = s;
-            }
-            while (CustomMethod.IsBlank(s));
+            } while (CustomMethod.IsBlank(s));
 
-            Console.WriteLine("Enter the Quantity Per Unit - Example 24 per box:");
-            product.QuantityPerUnit = Console.ReadLine();
-            try
+
+            Console.Clear();
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name: {s}  Category Id: {id}  Supplier Id: {sid}\n");
+
+            do
             {
-                //do
-                //{
-                    Console.WriteLine("Unit Price as 0.00:");
+                Console.WriteLine("Enter the Quantity Per Unit - Example 24 per box:");
+
+                s = Console.ReadLine();
+                if (CustomMethod.IsBlank(s))
+                {
+                    Console.WriteLine("\t**Must enter something");
+                    logger.Info("blank Qty Per Unit entered");
+                }
+                else
+                    product.QuantityPerUnit = s;
+            } while (CustomMethod.IsBlank(s));
+
+
+            Console.WriteLine("Unit Price as 0.00:");
                     price = Console.ReadLine();
                     decimal decprice;
 
@@ -145,14 +157,16 @@ namespace MFFinal.Prod
                     else
                         Console.WriteLine("Not a Decimal");
 
-                //    //string Abprice = Math.Abs(price);
-                //} while (badentry);
-            }
-            catch
-            {
-                logger.Info($"bad Price Entered {price}");
-                Console.WriteLine("Not a Decimal");
-            }
+                    //    //string Abprice = Math.Abs(price);
+                    //} while (badentry);
+                }
+                catch
+                {
+                    logger.Info($"bad Price Entered {price}");
+                    Console.WriteLine("Not a Decimal");
+                }
+            } while (badentry == true);
+
 
             try
             {
