@@ -14,6 +14,8 @@ namespace MFFinal.Prod
         string price;
         string sunits;
         static string s;
+        int id;
+        int sid;
 
         bool badentry = true;
         public AddProd()
@@ -23,37 +25,86 @@ namespace MFFinal.Prod
 
             do
             {
-
-                Console.WriteLine("Northwind Products - Add a Product\n");
-                Console.WriteLine("Enter the Category Id for this product:");
-
-                s = DisplayCat.DispCatSel(); // display the list of categories
-
-                if (CustomMethod.IsBlank(s))
+                try
                 {
-                    Console.WriteLine("\t**Must enter something");
-                    logger.Info("blank Name entered");
+                    Console.WriteLine("Northwind Products - Add a Product\n");
+                    Console.WriteLine("Enter the Category Id for this product:");
+
+                    s = DisplayCat.DispCatSel(); // display the list of categories
+
+                    if (CustomMethod.IsBlank(s))
+                    {
+                        Console.WriteLine("** Must enter something");
+                        logger.Info("blank categoryid entered");
+                    }
+                    else
+                    {
+                        id = Int16.Parse(s); // try to parse
+                        if (db.Categories.Any(p => p.CategoryId == id))
+                        {
+                            Console.Clear();
+                            logger.Info($"CategoryId {id} selected");
+                            product.CategoryId = id;
+                            badentry = false;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("** Incorrect CategoryID selected");
+                            logger.Info($"Incorrect CategoryId selected");
+                        }
+                    }
                 }
-                else 
+                catch
                 {
-                    int id = Int16.Parse(s); // display the list of categories
-                    if (db.Products.Any(p => p.ProductID == s)
+                    logger.Info($"incorrect CategoryId selected");
+                    Console.WriteLine("** Incorrect CategoryID selected");
                 }
-
-                Console.Clear();
-                logger.Info($"CategoryId {id} selected");
-                product.CategoryId = id;
-            } while (CustomMethod.IsBlank(s));
+            
+            } while (badentry == true);
 
 
-            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
-            Console.WriteLine($"CategoryId {id} selected\n");
-            Console.WriteLine("Enter the Supplier Id for this product:");
+            badentry = true;
+            do
+            {
+                try
+                {
 
-            int sid = int.Parse(DisplaySup.DisplaySupSel()); // display the list of Suppliers
-            Console.Clear();
-            logger.Info($"SupplierId {sid} selected");
-            product.SupplierId = sid;
+                    Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+                    Console.WriteLine($"CategoryId {id} selected\n");
+                    Console.WriteLine("Enter the Supplier Id for this product:");
+
+                   s = DisplaySup.DisplaySupSel(); // display the list of Suppliers
+                    if (CustomMethod.IsBlank(s))
+                    {
+                        Console.WriteLine("** Must enter something");
+                        logger.Info("blank supplier entered");
+                    }
+                    else
+                    {
+                        sid = Int16.Parse(s); // try to parse
+                        if (db.Suppliers.Any(p => p.SupplierId == sid))
+                        {
+                            Console.Clear();
+                            logger.Info($"SupplierId {sid} selected");
+                            product.SupplierId = sid;
+                            badentry = false;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("** Incorrect SupplierID selected");
+                            logger.Info($"Incorrect SupplierId selected");
+                        }
+                    }
+                }
+                catch
+                {
+                    logger.Info($"incorrect SupplierId selected");
+                    Console.WriteLine("** Incorrect SupplierID selected");
+                }
+            } while (badentry == true);
+
 
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
