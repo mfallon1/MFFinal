@@ -10,13 +10,13 @@ namespace MFFinal.Prod
     internal class DisplayAllProd
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public DisplayAllProd() // display all the categories
+        public DisplayAllProd() // display all the products
         {
             logger.Info("Program started");
             string choice = "";
             char selection;
             var db = new NorthwindContext();
-            var query = db.Products.OrderBy(p => p.ProductName); 
+            IQueryable<Product> query = db.Products.OrderBy(p => p.ProductName); 
 
             do
             {

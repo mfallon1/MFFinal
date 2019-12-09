@@ -70,6 +70,7 @@
     <Compile Include="Cat\EditCat.cs" />
     <Compile Include="CustomMethod.cs" />
     <Compile Include="DisplaySup.cs" />
+    <Compile Include="Prod\DisplayAProd.cs" />
     <Compile Include="Prod\ProductMain.cs" />
     <Compile Include="Prod\ProductMenu.cs" />
     <Compile Include="Prod\GetProductCount.cs" />

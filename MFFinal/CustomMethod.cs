@@ -18,5 +18,28 @@ namespace MFFinal
             return false;
         }
 
+        public static bool IsDec(string s)
+        {
+            decimal decprice;
+            if (Decimal.TryParse(s, out decprice))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+
+        public static bool IsInt(string s)
+        {
+            Int16 intunits;
+
+            if (Int16.TryParse(s, out intunits))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
