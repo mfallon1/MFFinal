@@ -36,7 +36,7 @@ namespace MFFinal
 
                 else if (choice == "3")  // Display the category and its products
                 {
-                    Prod.DisplayProd displayProd = new Prod.DisplayProd();
+                    Prod.DisplayAProd displayaProd = new Prod.DisplayAProd();
                 }
 
                 else if (choice == "4")
@@ -44,10 +44,10 @@ namespace MFFinal
                     Prod.EditProd editProd = new Prod.EditProd();  // Edit a product
                 }
 
-                //else if (choice == "5")
-                //{
-                //    EditCat editCat = new EditCat();  // Edit a category
-                //}
+                else if (choice == "5")
+                {
+                    Prod.DeleteProd deleteProd = new Prod.DeleteProd();  // Delete a product
+                }
 
 
             } while (!selection.Equals('q'));

@@ -14,7 +14,7 @@ namespace MFFinal
         {
             var db = new NorthwindContext();
 
-            Console.WriteLine("Enter the Category Id you would like displayed:");
+            Console.WriteLine("Enter the Category Id you would like Deleted and Press ENTER:");
 
             int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
 

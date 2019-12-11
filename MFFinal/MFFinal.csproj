@@ -64,6 +64,7 @@
     <Compile Include="Cat\CategoryMain.cs" />
     <Compile Include="Cat\CategoryMenu.cs" />
     <Compile Include="Cat\AddCat.cs" />
+    <Compile Include="Cat\DeleteCat.cs" />
     <Compile Include="Cat\DisplayAllCatProd.cs" />
     <Compile Include="Cat\DisplayCat.cs" />
     <Compile Include="Cat\DisplayCatProd.cs" />

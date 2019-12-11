@@ -50,6 +50,10 @@ namespace MFFinal
                 {
                     EditCat editCat = new EditCat();  // Edit a category
                 }
+                else if (choice == "6")
+                {
+                    DeleteCat deleteCat = new DeleteCat();  // Edit a category
+                }
 
 
             } while (!selection.Equals('q'));

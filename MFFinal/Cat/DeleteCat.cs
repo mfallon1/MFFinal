@@ -7,15 +7,14 @@ using System.Linq;
 
 namespace MFFinal
 {
-    internal class EditCat
+    internal class DeleteCat
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
-        public EditCat()
+        public DeleteCat()
         {
             var db = new NorthwindContext();
-            string newname;
-            string newdesc;
+            //string newname;
+            //string newdesc;
             //
             Console.WriteLine("Select the category you want to edit:");
 
@@ -37,13 +36,16 @@ namespace MFFinal
             Console.WriteLine($"You chose {category.CategoryName} - {category.Description}");
             logger.Info($" {category.CategoryName} - {category.Description}");
 
+            var cquery = db.Products.Where(p => p.CategoryId == id).Count();
+            Console.WriteLine($"\n** {cquery} Product(s) will be deleted\n");
+
             Console.WriteLine("Edit Category Name? Y/N");
             string edit = Console.ReadLine();
             logger.Info($"{edit}");
 
 
             if (edit.ToLower() == "y")
-            { 
+            {
                 Console.WriteLine("Enter a new Category name");
                 newname = Console.ReadLine(); // get the name 
                 logger.Info($"{newname}");
@@ -64,7 +66,8 @@ namespace MFFinal
             // update naem and db - this works because we have it from above
             //    db.Categories.Add(category);
             db.SaveChanges();
-            
+
         }
+    }
     }
 }

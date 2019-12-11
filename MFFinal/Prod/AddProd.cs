@@ -62,9 +62,9 @@ namespace MFFinal.Prod
             Console.WriteLine("Enter the Supplier Id for this product:");
             do
             {
-                //try
-                //{
-                   s = DisplaySup.DisplaySupSel(); // display the list of Suppliers
+                try
+                {
+                    s = DisplaySup.DisplaySupSel(); // display the list of Suppliers
                     if (CustomMethod.IsBlank(s))
                     {
                         Console.WriteLine("** Must enter something");
@@ -87,12 +87,12 @@ namespace MFFinal.Prod
                             logger.Info($"Incorrect SupplierId selected");
                         }
                     }
-                //}
-                //catch
-                //{
-                //    logger.Info($"incorrect SupplierId selected");
-                //    Console.WriteLine("** Incorrect SupplierID selected");
-                //}
+                }
+                catch
+                {
+                    logger.Info($"incorrect SupplierId selected");
+                    Console.WriteLine("** Incorrect SupplierID selected");
+                }
             } while (badentry);
 
 
@@ -102,7 +102,7 @@ namespace MFFinal.Prod
 
 
             do
-            { 
+            {
                 Console.WriteLine("Product Name:");  //validate the product name
                 s = Console.ReadLine();
                 product.ProductName = s;
@@ -151,21 +151,21 @@ namespace MFFinal.Prod
             {
                 //try
                 //{ 
-                    Console.WriteLine("Unit Price as 0.00:");
-                    s = Console.ReadLine();
+                Console.WriteLine("Unit Price as 0.00:");
+                s = Console.ReadLine();
 
-                    if (CustomMethod.IsDec(s))
-                    {
-                        logger.Info($"Good Price Entered {s}");
-                        product.UnitPrice = Convert.ToDecimal(s);
-                        logger.Info($"{s} Unit Price");
-                        //break;
-                    }
-                    else
-                    {
-                        logger.Info($"bad Price Entered {s}");
-                        Console.WriteLine("Not a Decimal");
-                    }
+                if (CustomMethod.IsDec(s))
+                {
+                    logger.Info($"Good Price Entered {s}");
+                    product.UnitPrice = Convert.ToDecimal(s);
+                    logger.Info($"{s} Unit Price");
+                    //break;
+                }
+                else
+                {
+                    logger.Info($"bad Price Entered {s}");
+                    Console.WriteLine("Not a Decimal");
+                }
                 //}
                 //catch
                 //{
@@ -183,20 +183,20 @@ namespace MFFinal.Prod
             {
                 //try
                 //{
-                    Console.WriteLine("Enter the number of Units In Stock:");
-                    s = Console.ReadLine();
+                Console.WriteLine("Enter the number of Units In Stock:");
+                s = Console.ReadLine();
 
-                    if (CustomMethod.IsInt(s))
-                    {
-                        logger.Info($"Units In Stock {s}");
-                        product.UnitsInStock = Convert.ToInt16(s);
-                        //break;
-                    }
-                    else
-                    {
-                        logger.Info($"bad Units in Stock Entered {s}");
-                        Console.WriteLine("** Not an Integer");
-                    }
+                if (CustomMethod.IsInt(s))
+                {
+                    logger.Info($"Units In Stock {s}");
+                    product.UnitsInStock = Convert.ToInt16(s);
+                    //break;
+                }
+                else
+                {
+                    logger.Info($"bad Units in Stock Entered {s}");
+                    Console.WriteLine("** Not an Integer");
+                }
                 //}
                 //catch
                 //{
@@ -215,19 +215,19 @@ namespace MFFinal.Prod
             {
                 //try
                 //{
-                    Console.WriteLine("Enter the number of Units On Order:");
-                    s = Console.ReadLine();
-                    if (CustomMethod.IsInt(s))
-                    {
-                        logger.Info($"Units On Order {s}");
-                        product.UnitsOnOrder = Convert.ToInt16(s);
-                        //break;
-                    }
-                    else
-                    {
-                       logger.Info($"bad Units On Order Entered {s}");
-                       Console.WriteLine("** Not an Integer");
-                    }
+                Console.WriteLine("Enter the number of Units On Order:");
+                s = Console.ReadLine();
+                if (CustomMethod.IsInt(s))
+                {
+                    logger.Info($"Units On Order {s}");
+                    product.UnitsOnOrder = Convert.ToInt16(s);
+                    //break;
+                }
+                else
+                {
+                    logger.Info($"bad Units On Order Entered {s}");
+                    Console.WriteLine("** Not an Integer");
+                }
                 //}
                 //catch
                 //{
@@ -247,20 +247,20 @@ namespace MFFinal.Prod
             {
                 //try
                 //{
-                    Console.WriteLine("Enter the Reorder Level count:");
-                    s = Console.ReadLine();
+                Console.WriteLine("Enter the Reorder Level count:");
+                s = Console.ReadLine();
 
-                    if (CustomMethod.IsInt(s))
-                    {
-                        logger.Info($"Reorder Level {s}");
-                        product.ReorderLevel = Convert.ToInt16(s);
-                        //break;
-                    }
-                    else
-                    {
-                        logger.Info($"bad Reorder Level {s}");
-                        Console.WriteLine("** Not an Integer");
-                    }
+                if (CustomMethod.IsInt(s))
+                {
+                    logger.Info($"Reorder Level {s}");
+                    product.ReorderLevel = Convert.ToInt16(s);
+                    //break;
+                }
+                else
+                {
+                    logger.Info($"bad Reorder Level {s}");
+                    Console.WriteLine("** Not an Integer");
+                }
                 //}
                 //catch
                 //{
@@ -285,7 +285,7 @@ namespace MFFinal.Prod
             disc = disc.ToLower();
             if (disc == "y")
             {
-                product.Discontinued = true;               
+                product.Discontinued = true;
             }
 
             //Console.Clear();
@@ -304,13 +304,13 @@ namespace MFFinal.Prod
             ValidationContext context = new ValidationContext(product, null, null); // what do I want to validate? = product put product in our context
             List<ValidationResult> results = new List<ValidationResult>();
 
-        var isValid = Validator.TryValidateObject(product, context, results, true); // validate product and return it to results = bool
+            var isValid = Validator.TryValidateObject(product, context, results, true); // validate product and return it to results = bool
             if (isValid)
             {
-                 db = new NorthwindContext();
+                db = new NorthwindContext();
                 db.Products.Add(product);
                 var erro = db.GetValidationErrors();
-                if (erro.Any()) 
+                if (erro.Any())
                 {
                     Console.WriteLine(erro);
                 }
@@ -320,9 +320,9 @@ namespace MFFinal.Prod
                 {
                     // generate validation error
                     isValid = false;
-                    results.Add(new ValidationResult("****Sorry this Product Name exists - Please try again ", new string[] {"ProductName"}));
+                    results.Add(new ValidationResult("****Sorry this Product Name exists - Please try again ", new string[] { "ProductName" }));
                 }
-                else 
+                else
 
                 {
                     logger.Info("Validation passed");

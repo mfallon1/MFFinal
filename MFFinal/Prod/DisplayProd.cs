@@ -19,6 +19,7 @@ namespace MFFinal.Prod
             {
                 Console.WriteLine($"{item.ProductID}) - {item.ProductName}");
             }
+            Console.WriteLine("Type the Product ID and press ENTER:");
             string prodid = Console.ReadLine();
             return prodid;
         }
