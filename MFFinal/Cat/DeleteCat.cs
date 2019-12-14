@@ -33,13 +33,31 @@ namespace MFFinal
             Console.Clear();
             logger.Info($"CategoryId {id} selected");
 
-            // get the record
-            Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id); // get the record context - is connected to the database - have to get the context first to update it
-            //Console.WriteLine($"You selected: {category.CategoryName} - {category.Description}");
-            logger.Info($" {category.CategoryName} - {category.Description}");
 
-            var cquery = db.Products.Where(p => p.CategoryId == id).Count();
-            Console.WriteLine($"\n** You selected: {category.CategoryName} {category.Description} - with {cquery} Product(s)\n");
+            Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id);
+            Console.WriteLine($"You chose {category.CategoryName} - {category.Description}");
+
+            GetProductCount getProductCount = new GetProductCount(id); // display the product count first
+
+            foreach (Product p in category.Products) // products enumerated in the category bcause of the list
+            {
+              Console.WriteLine($"\t{p.ProductName}");
+            }
+
+
+
+            //// get the record
+            //Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id); // get the record context - is connected to the database - have to get the context first to update it
+            ////Console.WriteLine($"You selected: {category.CategoryName} - {category.Description}");
+            //logger.Info($" {category.CategoryName} - {category.Description}");
+
+            //var cquery = db.Products.Where(p => p.CategoryId == id).Count();
+            //Console.WriteLine($"\n** You selected: {category.CategoryName} {category.Description} - with {cquery} Product(s)\n");
+            //foreach (item in cquery)
+            //{
+            //    if (!p.Discontinued)
+            //        Console.WriteLine($"\t{p.ProductName}");
+            //}
 
             Console.WriteLine("Delete the Category and its Products? Y/N");
             string del = Console.ReadLine();

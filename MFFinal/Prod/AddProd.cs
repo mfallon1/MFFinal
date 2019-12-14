@@ -13,6 +13,8 @@ namespace MFFinal.Prod
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         static string s;
         int id;
+        string suppliername;
+        string categoryname;
 
         bool badentry = true;
         public AddProd()
@@ -35,31 +37,37 @@ namespace MFFinal.Prod
                         if (db.Categories.Any(p => p.CategoryId == id)) //validate the ID entered
                         {
                             Console.Clear();
+                            Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id);
                             logger.Info($"CategoryId {id} selected");
+                            categoryname = category.CategoryName;
                             product.CategoryId = id;
                             badentry = false;
                             break;
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("** Incorrect CategoryID selected");
                             logger.Info($"Incorrect CategoryId selected");
+                            Console.ResetColor();
                         }
                     }
                 }
                 catch
                 {
                     logger.Info($"incorrect CategoryId selected");
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("** Incorrect CategoryID selected");
+                    Console.ResetColor();
                 }
             } while (badentry);
 
 
             badentry = true;
 
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"CategoryId {product.CategoryId} selected/n");
-            Console.WriteLine("Enter the Supplier Id for this product:");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine("\nEnter the Supplier Id for this product:");
             do
             {
                 try
@@ -67,15 +75,19 @@ namespace MFFinal.Prod
                     s = DisplaySup.DisplaySupSel(); // display the list of Suppliers
                     if (CustomMethod.IsBlank(s))
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("** Must enter something");
                         logger.Info("blank supplier entered");
+                        Console.ResetColor();
                     }
                     else
                     {
                         id = Int16.Parse(s); // try to parse
                         if (db.Suppliers.Any(p => p.SupplierId == id)) //validate the ID entered
                         {
+                            Supplier supplier = db.Suppliers.FirstOrDefault(c => c.SupplierId == id);
                             Console.Clear();
+                            suppliername = supplier.CompanyName;
                             logger.Info($"SupplierId {id} selected");
                             product.SupplierId = id;
                             badentry = false;
@@ -83,34 +95,41 @@ namespace MFFinal.Prod
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("** Incorrect SupplierID selected");
                             logger.Info($"Incorrect SupplierId selected");
+                            Console.ResetColor();
                         }
                     }
                 }
                 catch
                 {
                     logger.Info($"incorrect SupplierId selected");
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("** Incorrect SupplierID selected");
+                    Console.ResetColor();
                 }
             } while (badentry);
 
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Category Id: {product.CategoryId} Supplier Id: {product.SupplierId}\n");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:  {product.SupplierId} {suppliername}");
 
 
             do
             {
-                Console.WriteLine("Product Name:");  //validate the product name
+                Console.WriteLine("\nProduct Name:");  //validate the product name
                 s = Console.ReadLine();
                 product.ProductName = s;
 
                 if (CustomMethod.IsBlank(s))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("** Must enter something");
                     logger.Info("blank Name entered");
+                    Console.ResetColor();
                 }
                 //else
                 //{
@@ -121,18 +140,22 @@ namespace MFFinal.Prod
 
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}\n");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name: {product.ProductName}");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:  {product.SupplierId} {suppliername}");
 
             do
             {
-                Console.WriteLine("Enter the Quantity Per Unit - Example 24 per box:");
+                Console.WriteLine("\nEnter the Quantity Per Unit - Example 24 per box:");
 
                 s = Console.ReadLine();
                 product.QuantityPerUnit = s;
                 if (CustomMethod.IsBlank(s))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("** Must enter something");
+                    Console.ResetColor();
                     logger.Info("blank Qty Per Unit entered");
                 }
                 //else
@@ -144,14 +167,16 @@ namespace MFFinal.Prod
 
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}");
-            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}\n");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name: {product.ProductName}");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:  {product.SupplierId} {suppliername}");
+            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
             do
             {
                 //try
                 //{ 
-                Console.WriteLine("Unit Price as 0.00:");
+                Console.WriteLine("\nUnit Price as 0.00:");
                 s = Console.ReadLine();
 
                 if (CustomMethod.IsDec(s))
@@ -164,7 +189,9 @@ namespace MFFinal.Prod
                 else
                 {
                     logger.Info($"bad Price Entered {s}");
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Not a Decimal");
+                    Console.ResetColor();
                 }
                 //}
                 //catch
@@ -175,15 +202,17 @@ namespace MFFinal.Prod
             } while (!CustomMethod.IsDec(s));
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name: {product.ProductName}");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:  {product.SupplierId} {suppliername}");
             Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}\n");
+            Console.WriteLine($"Unit Price:   {product.UnitPrice}");
             do
             {
                 //try
                 //{
-                Console.WriteLine("Enter the number of Units In Stock:");
+                Console.WriteLine("\nEnter the number of Units In Stock:");
                 s = Console.ReadLine();
 
                 if (CustomMethod.IsInt(s))
@@ -195,7 +224,9 @@ namespace MFFinal.Prod
                 else
                 {
                     logger.Info($"bad Units in Stock Entered {s}");
-                    Console.WriteLine("** Not an Integer");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("** Not a valid number");
+                    Console.ResetColor();
                 }
                 //}
                 //catch
@@ -206,16 +237,18 @@ namespace MFFinal.Prod
             } while (!CustomMethod.IsInt(s));
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name: {product.ProductName}");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:  {product.SupplierId} {suppliername}");
             Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
-            Console.WriteLine($"Units In Stock: {product.UnitsInStock}\n");
+            Console.WriteLine($"Unit Price:   {product.UnitPrice}");
+            Console.WriteLine($"Units In Stock:    {product.UnitsInStock}");
             do
             {
                 //try
                 //{
-                Console.WriteLine("Enter the number of Units On Order:");
+                Console.WriteLine("\nEnter the number of Units On Order:");
                 s = Console.ReadLine();
                 if (CustomMethod.IsInt(s))
                 {
@@ -226,7 +259,9 @@ namespace MFFinal.Prod
                 else
                 {
                     logger.Info($"bad Units On Order Entered {s}");
-                    Console.WriteLine("** Not an Integer");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("** Not a valid number");
+                    Console.ResetColor();
                 }
                 //}
                 //catch
@@ -237,17 +272,19 @@ namespace MFFinal.Prod
             } while (!CustomMethod.IsInt(s));
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name: {product.ProductName}");
+            Console.WriteLine($"CategoryId:   {product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:  {product.SupplierId} {suppliername}");
             Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
-            Console.WriteLine($"Units in stock: {product.UnitsInStock}");
-            Console.WriteLine($"Units On Order: {product.UnitsOnOrder}\n");
+            Console.WriteLine($"Unit Price:   {product.UnitPrice}");
+            Console.WriteLine($"Units In Stock:    {product.UnitsInStock}");
+            Console.WriteLine($"Units On Order:    {product.UnitsOnOrder}");
             do
             {
                 //try
                 //{
-                Console.WriteLine("Enter the Reorder Level count:");
+                Console.WriteLine("\nEnter the Reorder Level count:");
                 s = Console.ReadLine();
 
                 if (CustomMethod.IsInt(s))
@@ -259,7 +296,10 @@ namespace MFFinal.Prod
                 else
                 {
                     logger.Info($"bad Reorder Level {s}");
-                    Console.WriteLine("** Not an Integer");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("** Not a valid number");
+                    Console.ResetColor();
+
                 }
                 //}
                 //catch
@@ -270,36 +310,25 @@ namespace MFFinal.Prod
             } while (!CustomMethod.IsInt(s));
 
             Console.Clear();
-            Console.WriteLine("\n\nNorthwind Products - Add a Product");
-            Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}");
+            Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
+            Console.WriteLine($"Product Name:\t{product.ProductName}");
+            Console.WriteLine($"CategoryId:\t{product.CategoryId} {categoryname}");
+            Console.WriteLine($"Supplier Id:\t{product.SupplierId} {suppliername}");
             Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
-            Console.WriteLine($"Units in stock: {product.UnitsInStock}");
-            Console.WriteLine($"Units On Order: {product.UnitsOnOrder}");
-            Console.WriteLine($"ReOrder Level: {product.ReorderLevel}\n");
+            Console.WriteLine($"Unit Price:\t{product.UnitPrice}");
+            Console.WriteLine($"Units In Stock:\t{product.UnitsInStock}");
+            Console.WriteLine($"Units On Order:\t{product.UnitsOnOrder}");
+            Console.WriteLine($"ReOrder Level:\t{product.ReorderLevel}");
 
 
             product.Discontinued = false;
-            Console.WriteLine("Is the Item Discontinued?  Y or anything else for Active");
+            Console.WriteLine("\nIs the Item Discontinued?  Y or anything else for Active");
             string disc = Console.ReadLine();
             disc = disc.ToLower();
             if (disc == "y")
             {
                 product.Discontinued = true;
             }
-
-            //Console.Clear();
-            //Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
-            //Console.WriteLine($"Product Name: {product.ProductName}  Category Id: {product.CategoryId}  Supplier Id: {product.SupplierId}\n");
-            //Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}\n");
-            //Console.WriteLine($"Unit Price: {product.UnitPrice}\n");
-            //Console.WriteLine($"Units in stock: {product.UnitsInStock}\n");
-            //Console.WriteLine($"Units On Order: {product.UnitsOnOrder}\n");
-            //Console.WriteLine($"ReOrder Level: {product.ReorderLevel}\n");
-            //if (product.Discontinued == true)
-            //Console.WriteLine($"Discontinued: Y \n\n");
-            //else
-            //    Console.WriteLine($"Discontinued: Y \n\n");
 
             ValidationContext context = new ValidationContext(product, null, null); // what do I want to validate? = product put product in our context
             List<ValidationResult> results = new List<ValidationResult>();
@@ -312,7 +341,9 @@ namespace MFFinal.Prod
                 var erro = db.GetValidationErrors();
                 if (erro.Any())
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(erro);
+                    Console.ResetColor();
                 }
 
                 // check for unique name
@@ -320,7 +351,9 @@ namespace MFFinal.Prod
                 {
                     // generate validation error
                     isValid = false;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     results.Add(new ValidationResult("****Sorry this Product Name exists - Please try again ", new string[] { "ProductName" }));
+                    Console.ResetColor();
                 }
                 else
 
@@ -334,12 +367,14 @@ namespace MFFinal.Prod
 
             if (!isValid)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("* PRODUCT NOT ADDED *");
                 foreach (var result in results)
                 {
                     logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}");
                     Console.WriteLine($"ERROR: {result.ErrorMessage}");
                 }
+                Console.ResetColor();
             }
 
         }

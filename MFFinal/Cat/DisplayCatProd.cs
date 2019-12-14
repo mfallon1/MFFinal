@@ -14,7 +14,7 @@ namespace MFFinal
         {
             var db = new NorthwindContext();
 
-            Console.WriteLine("Enter the Category Id and Press ENTER:");
+            Console.WriteLine("Type the Category Id and Press ENTER:");
 
             int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
 
