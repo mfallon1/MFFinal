@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MFFinal.Models;
+using NLog;
 
 namespace MFFinal.Prod
 {
@@ -16,6 +17,9 @@ namespace MFFinal.Prod
             string choice = "";
             char selection;
             var db = new NorthwindContext();
+            int qcount = 0;
+            int m = 0;
+            string qsel = "Y";
             IQueryable<Product> query = db.Products.OrderBy(p => p.ProductName); 
 
             do
@@ -35,8 +39,7 @@ namespace MFFinal.Prod
                      Console.Clear();
                     Console.WriteLine();
                     Console.WriteLine("NORTHWIND Category & Products - Display all PRODUCTS\n");
-                    query = db.Products
-                        .OrderBy(p => p.ProductName);
+
                     break;
                 }
                 else if (choice == "2") // Products active
@@ -60,7 +63,8 @@ namespace MFFinal.Prod
 
             } while (!selection.Equals('q'));
 
-            Console.WriteLine($"****  There are {query.Count()} Products:");
+            qcount = query.Count();
+            Console.WriteLine($"** There are {query.Count()} Products:");
             foreach (var item in query)
             {
                 string active = "Active";
@@ -70,24 +74,27 @@ namespace MFFinal.Prod
                 }
                 //else
                 Console.WriteLine($"\t{item.ProductName} - {active}");
+                m++;
+                if (m == qcount - 1)
+                {
+                    qsel = "N";
+                    Console.WriteLine("\n** End of file **");
+                    logger.Info("no more products to display");
+                    break;
+                }
+                if (m == 30)
+                {
+                    Console.WriteLine("\n Enter to continue .....");
+                    qsel = Console.ReadLine().ToUpper();
+                    if (qsel == "Y" || qsel != "Y")
+                    {
+                        m = 0;
+                    }
+                }
+
             }
-            Console.Write("Press any key to continue . . . ");
+            Console.Write("\nFinished - Press any key to continue . . . ");
             Console.ReadKey(true);
-        }
-
-        public static string DispProdSel() // display the list of Products for selection
-        {
-
-            var db = new NorthwindContext();
-            var query = db.Categories.OrderBy(p => p.CategoryId);
-
-            foreach (var item in query)
-            {
-                Console.WriteLine($" {item.CategoryId}) {item.CategoryName}");
-            }
-
-            string catid = Console.ReadLine();
-            return catid;
         }
     }
 }

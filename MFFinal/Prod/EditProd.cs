@@ -27,13 +27,17 @@ namespace MFFinal.Prod
                     Console.WriteLine();
                     Console.WriteLine("NORTHWIND Category & Products - Edit PRODUCT\n");
                     Console.WriteLine("Select the Product you want to edit:");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("/n** Note: Category Id & Supplier Id cannot be edited");
+                    Console.ResetColor();
 
-                    int id = int.Parse(DisplayProd.DisplayProdSel()); // display the list of Products It returns the ID of the selection
+                int id = int.Parse(DisplayProd.DisplayProd10()); // display the list of Products It returns the ID of the selection
+                //int id = int.Parse(DisplayProd.DisplayProdSel()); // display the list of Products It returns the ID of the selection
 
-                    Console.Clear();
+                Console.Clear();
                     Console.WriteLine();
                     Console.WriteLine("NORTHWIND Category & Products - Edit PRODUCT\n");
-                    logger.Info($"ProductID {id} selected");
+                    logger.Info($"ProductID {id} selected to edit");
 
                 // get the record
 
@@ -53,13 +57,13 @@ namespace MFFinal.Prod
                         active = "Discontinued";
                     }
                     Console.WriteLine($"You chose: {item.ProductID} {item.ProductName} - {active}");
-                    Console.WriteLine($"\tCategory Id: {item.CategoryId} {item.CategoryName}");
-                    Console.WriteLine($"\tSupplier Id: {item.SupplierId} {item.CompanyName}");
-                    Console.WriteLine($"\tQuantity Per Unit: {item.QuantityPerUnit}");
-                    Console.WriteLine($"\tUnit Price: {item.UnitPrice}");
-                    Console.WriteLine($"\tUnits in stock: {item.UnitsInStock}");
-                    Console.WriteLine($"\tUnits On Order: {item.UnitsOnOrder}");
-                    Console.WriteLine($"\tReOrder Level: {item.ReorderLevel}\n");
+                    Console.WriteLine($"\t\tCategory Id: {item.CategoryId} {item.CategoryName}");
+                    Console.WriteLine($"\t\tSupplier Id: {item.SupplierId} {item.CompanyName}");
+                    Console.WriteLine($"\t\tQuantity Per Unit: {item.QuantityPerUnit}");
+                    Console.WriteLine($"\t\tUnit Price: {item.UnitPrice}");
+                    Console.WriteLine($"\t\tUnits in stock: {item.UnitsInStock}");
+                    Console.WriteLine($"\t\tUnits On Order: {item.UnitsOnOrder}");
+                    Console.WriteLine($"\t\tReOrder Level: {item.ReorderLevel}\n");
                 }
                 Product product = db.Products.FirstOrDefault(p => p.ProductID == id); // get the record context - is connected to the database - have to get the context first to update it
 

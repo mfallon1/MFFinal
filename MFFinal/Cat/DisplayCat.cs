@@ -27,12 +27,13 @@ namespace MFFinal
 
             var db = new NorthwindContext();
             var query = db.Categories.OrderBy(p => p.CategoryId);
-            
+            Console.WriteLine($"There are {query.Count()} Categories:");
+
             foreach (var item in query)
             {
-                Console.WriteLine($"\t{item.CategoryId}) {item.CategoryName}");
+                Console.WriteLine($"\t{item.CategoryId}) {item.CategoryName} - {item.Description} ");
             }
-
+            Console.WriteLine("\nType the Category Id and Press ENTER...");
             string catid = Console.ReadLine();
             return catid;
         }

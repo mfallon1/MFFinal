@@ -66,7 +66,7 @@ namespace MFFinal.Prod
             badentry = true;
 
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
             Console.WriteLine("\nEnter the Supplier Id for this product:");
             do
             {
@@ -114,8 +114,8 @@ namespace MFFinal.Prod
 
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
 
 
             do
@@ -138,8 +138,8 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"Product Name: {product.ProductName}");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
 
             do
             {
@@ -160,9 +160,9 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"Product Name: {product.ProductName}");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
-            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tQuantity Per Unit: {product.QuantityPerUnit}");
             do
             {
 
@@ -189,10 +189,10 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"Product Name: {product.ProductName}");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
-            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tQuantity Per Unit: {product.QuantityPerUnit}");
+            Console.WriteLine($"\tUnit Price: {product.UnitPrice}");
             do
             {
                 Console.WriteLine("\nEnter the number of Units In Stock:"); // units in stock
@@ -217,11 +217,11 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"Product Name: {product.ProductName}");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
-            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
-            Console.WriteLine($"Units In Stock: {product.UnitsInStock}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tQuantity Per Unit: {product.QuantityPerUnit}");
+            Console.WriteLine($"\tUnit Price: {product.UnitPrice}");
+            Console.WriteLine($"\tUnits In Stock: {product.UnitsInStock}");
             do
             {
 
@@ -246,12 +246,12 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"Product Name: {product.ProductName}");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
-            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
-            Console.WriteLine($"Units In Stock: {product.UnitsInStock}");
-            Console.WriteLine($"Units On Order: {product.UnitsOnOrder}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tQuantity Per Unit: {product.QuantityPerUnit}");
+            Console.WriteLine($"\tUnit Price: {product.UnitPrice}");
+            Console.WriteLine($"\tUnits In Stock: {product.UnitsInStock}");
+            Console.WriteLine($"\tUnits On Order: {product.UnitsOnOrder}");
             do
             {
 
@@ -278,13 +278,13 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine("\n\nNorthwind Products - Add a Product\n");
             Console.WriteLine($"Product Name: {product.ProductName}");
-            Console.WriteLine($"CategoryId: {product.CategoryId} {categoryname}");
-            Console.WriteLine($"Supplier Id: {product.SupplierId} {suppliername}");
-            Console.WriteLine($"Quantity Per Unit: {product.QuantityPerUnit}");
-            Console.WriteLine($"Unit Price: {product.UnitPrice}");
-            Console.WriteLine($"Units In Stock: {product.UnitsInStock}");
-            Console.WriteLine($"Units On Order: {product.UnitsOnOrder}");
-            Console.WriteLine($"ReOrder Level: {product.ReorderLevel}");
+            Console.WriteLine($"\tCategoryId: {product.CategoryId} {categoryname}");
+            Console.WriteLine($"\tSupplier Id: {product.SupplierId} {suppliername}");
+            Console.WriteLine($"\tQuantity Per Unit: {product.QuantityPerUnit}");
+            Console.WriteLine($"\tUnit Price: {product.UnitPrice}");
+            Console.WriteLine($"\tUnits In Stock: {product.UnitsInStock}");
+            Console.WriteLine($"\tUnits On Order: {product.UnitsOnOrder}");
+            Console.WriteLine($"\tReOrder Level: {product.ReorderLevel}");
 
 
             product.Discontinued = false;

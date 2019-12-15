@@ -16,10 +16,10 @@ namespace MFFinal
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("NORTHWIND Category & Products - Display Category and related Products\n");
-            Console.WriteLine("Type the Category Id and Press ENTER:");
             try
-            { 
-            int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
+            {
+
+                int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
 
             Console.Clear();
             Console.WriteLine("NORTHWIND Category & Products - Display Category and related Products\n");

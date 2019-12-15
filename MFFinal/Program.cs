@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace MFFinal
 {
     public class MainClass
     {
+        //Logger logger = LogManager.GetLogger("nlog-internal.log");
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public static void Main(string[] args)

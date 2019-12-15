@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;   //ASICS Men's GEL-Flux 9 x-wide
+using System.Threading.Tasks;
+using NLog;
 namespace MFFinal
 {
     internal class ProductMain

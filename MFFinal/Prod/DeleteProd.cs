@@ -20,12 +20,12 @@ namespace MFFinal.Prod
             Console.WriteLine("Select the Product you want to Delete:");
             try
             {
-                int id = int.Parse(DisplayProd.DisplayProdSel()); // display the list of Products It returns the ID of the selection
+                 int id = int.Parse(DisplayProd.DisplayProd10()); // display the list of Products It returns the ID of the selection
 
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine("NORTHWIND Category & Products - Delete PRODUCT\n");
-                logger.Info($"ProductID {id} selected");
+                logger.Info($"ProductID {id} selected for delete");
 
 
                 Product product = db.Products.FirstOrDefault(p => p.ProductID == id); // get the record context - is connected to the database - have to get the context first to update it

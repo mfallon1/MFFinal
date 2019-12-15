@@ -22,6 +22,7 @@ namespace MFFinal
             category.CategoryName = Console.ReadLine();
             Console.WriteLine("Enter the Category Description:");
             category.Description = Console.ReadLine();
+            logger.Info($"{category.CategoryName} {category.Description}");
 
             ValidationContext context = new ValidationContext(category, null, null); // what do I want to validate? = category put category in our context
             List<ValidationResult> results = new List<ValidationResult>();
@@ -35,6 +36,7 @@ namespace MFFinal
                 if (erro.Any()) //added in class
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
+                    logger.Info($"{erro}");
                     Console.WriteLine(erro);
                     Console.ResetColor();
                 }

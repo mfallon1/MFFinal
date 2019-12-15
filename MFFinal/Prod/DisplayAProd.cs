@@ -18,9 +18,9 @@ namespace MFFinal.Prod
             Console.WriteLine("NORTHWIND Category & Products - Display Product Detail\n");
 
             try {
-            int id = int.Parse(DisplayProd.DisplayProdSel()); // display the list of Products It returns the ID of the selection
+            int id = int.Parse(DisplayProd.DisplayProd10()); // display the list of Products It returns the ID of the selection
 
-            logger.Info($"ProductId {id} selected");
+                logger.Info($"ProductId {id} selected");
 
                 Console.Clear();
                 Console.WriteLine();

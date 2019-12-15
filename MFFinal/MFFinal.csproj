@@ -92,6 +92,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Nlog.config" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
