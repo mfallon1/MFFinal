@@ -16,21 +16,12 @@ namespace MFFinal.Prod
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("NORTHWIND Category & Products - Display Product Detail\n");
-            //Console.WriteLine("Enter the Product Id you would like displayed:");
+
             try {
             int id = int.Parse(DisplayProd.DisplayProdSel()); // display the list of Products It returns the ID of the selection
 
-            //Console.Clear();
-            //Console.WriteLine();
-            //Console.WriteLine("NORTHWIND Category & Products - PRODUCT DETAIL");
             logger.Info($"ProductId {id} selected");
 
-                //    Product product = db.Products.FirstOrDefault(c => c.ProductID == id);
-                //   var query = db.Products.
-                //Join(db.Categories, pl => pl.CategoryId, ct => ct.CategoryId,(p1, ct) => new { Products = p1, Categories = ct })
-                //.Join(db.Suppliers, p2 => p2.SupplierId, s => s.SupplierId, (p2, s) => new { Products = p2, Suppliers = s })
-
-                //.Distinct();
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine("NORTHWIND Category & Products - Display Product Detail\n");

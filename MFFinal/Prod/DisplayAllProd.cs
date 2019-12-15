@@ -32,9 +32,7 @@ namespace MFFinal.Prod
 
                 if (choice == "1") //  all Products
                 {
-                    //Prod.DisplayProd displayProd = new Prod.DisplayProd();
-                    //DisplayProd.DisplayProd(); // display the list of Products It returns the ID of the selection
-                    Console.Clear();
+                     Console.Clear();
                     Console.WriteLine();
                     Console.WriteLine("NORTHWIND Category & Products - Display all PRODUCTS\n");
                     query = db.Products

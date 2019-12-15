@@ -13,13 +13,12 @@ namespace MFFinal.Prod
             static string s;
             bool badentry = true;
             int id;
-            string suppliername;
-            string categoryname;
+
 
         public EditProd()
             {
                 var db = new NorthwindContext();
-                //Product product = new Product();
+
                 string newname;
               
                 try
@@ -45,6 +44,7 @@ namespace MFFinal.Prod
                             where p1.SupplierId == s.SupplierId
                             where p1.ProductID == id
                             select new { p1.ProductID, p1.ProductName, cg.CategoryId, p1.SupplierId, p1.QuantityPerUnit, p1.UnitPrice, p1.UnitsInStock, p1.UnitsOnOrder, p1.ReorderLevel, s.CompanyName, cg.CategoryName, p1.Discontinued };
+
                 foreach (var item in query)
                 {
                     string active = "Active";
@@ -266,11 +266,13 @@ namespace MFFinal.Prod
                     {
                         logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}");
                         Console.WriteLine($"ERROR: {result.ErrorMessage}");
+                        Console.ResetColor();
                     }
                     Console.ResetColor();
                 }
 
                 else
+                    db.Entry(product).CurrentValues.SetValues(product);
                     db.SaveChanges();
                 }
                 catch

@@ -48,7 +48,7 @@ namespace MFFinal
                     foreach (var item in dquery)
                     {
                         db.Products.Remove(item);
-                        //db.SaveChanges();
+                        db.SaveChanges();
                     }
                     var delcat = db.Categories.FirstOrDefault(c => c.CategoryId == id);
                     db.Categories.Remove(delcat);
