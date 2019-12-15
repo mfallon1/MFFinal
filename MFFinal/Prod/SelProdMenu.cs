@@ -9,8 +9,9 @@ namespace MFFinal.Prod
     {
         public SelProdMenu()
         {
+            Console.Clear();
             Console.WriteLine();
-            Console.WriteLine("NORTHWIND Products - Do you want to see:");
+            Console.WriteLine("NORTHWIND Category & Products - Display Produts");
             Console.WriteLine();
             Console.WriteLine("1) All Products");
             Console.WriteLine("2) Active Products");

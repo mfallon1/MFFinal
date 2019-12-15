@@ -10,13 +10,16 @@ namespace MFFinal
         {
             var db = new NorthwindContext();
             var query = db.Categories.OrderBy(p => p.CategoryName);
-
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("NORTHWIND Category & Products - Display CATEGORIES\n");
             Console.WriteLine($"There are {query.Count()} Categories:");
             foreach (var item in query)
             {
                 Console.WriteLine($"\t{item.CategoryName} - {item.Description}");
             }
-
+            Console.Write("\nPress any key to continue . . . ");
+            Console.ReadKey(true);
         }
 
         public static string DispCatSel() // display the list of categories for selection
@@ -27,7 +30,7 @@ namespace MFFinal
             
             foreach (var item in query)
             {
-                Console.WriteLine($" {item.CategoryId}) {item.CategoryName}");
+                Console.WriteLine($"\t{item.CategoryId}) {item.CategoryName}");
             }
 
             string catid = Console.ReadLine();

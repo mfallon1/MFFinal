@@ -14,7 +14,8 @@ namespace MFFinal
         {
             var db = new NorthwindContext();
             var query = db.Categories.Include("Products").OrderBy(p => p.CategoryId); // dont do .ToList() after because we can add to it with where etc.
-
+            Console.Clear();
+            Console.WriteLine("NORTHWIND Category & Products - Display Category and related Products\n");
             foreach (var item in query)
             {
                 Console.WriteLine($"\n{item.CategoryName}:");
@@ -27,7 +28,8 @@ namespace MFFinal
                     Console.WriteLine($"\t{p.ProductName}");
                 }
             }
-
+            Console.Write("Press any key to continue . . . ");
+            Console.ReadKey(true);
 
         }
     }

@@ -21,6 +21,7 @@ namespace MFFinal.Prod
             do
             {
                 var selprodmenu = new SelProdMenu();  // display the menu and return the selection
+
                 selection = char.ToLower(selprodmenu.GetSelInput());
                 if (selection.Equals('q'))
                 {
@@ -31,25 +32,35 @@ namespace MFFinal.Prod
 
                 if (choice == "1") //  all Products
                 {
+                    //Prod.DisplayProd displayProd = new Prod.DisplayProd();
+                    //DisplayProd.DisplayProd(); // display the list of Products It returns the ID of the selection
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine("NORTHWIND Category & Products - Display all PRODUCTS\n");
+                    query = db.Products
+                        .OrderBy(p => p.ProductName);
                     break;
                 }
                 else if (choice == "2") // Products active
                 {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine("NORTHWIND Category & Products - Display active PRODUCTS\n");
                     query = db.Products.Where(p => !p.Discontinued )
                                             .OrderBy(p => p.ProductName);
                     break;
                 }
                 else if (choice == "3") // Products discontinued
                 {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine("NORTHWIND Category & Products - Display discontinued PRODUCTS\n");
                     query = db.Products.Where(p => p.Discontinued)
                                             .OrderBy(p => p.ProductName);
                     break;
                 }
 
             } while (!selection.Equals('q'));
-
-
-
 
             Console.WriteLine($"****  There are {query.Count()} Products:");
             foreach (var item in query)
@@ -59,10 +70,11 @@ namespace MFFinal.Prod
                 {
                     active = "Discontinued";
                 }
-                else
+                //else
                 Console.WriteLine($"\t{item.ProductName} - {active}");
             }
-
+            Console.Write("Press any key to continue . . . ");
+            Console.ReadKey(true);
         }
 
         public static string DispProdSel() // display the list of Products for selection

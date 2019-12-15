@@ -301,12 +301,7 @@ namespace MFFinal.Prod
                     Console.ResetColor();
 
                 }
-                //}
-                //catch
-                //{
-                //    Console.WriteLine("Not an Integer");
-                //    logger.Info($"bad Reorder Level {s}");
-                //}
+
             } while (!CustomMethod.IsInt(s));
 
             Console.Clear();

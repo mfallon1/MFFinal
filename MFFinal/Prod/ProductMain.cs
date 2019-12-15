@@ -24,17 +24,17 @@ namespace MFFinal
                 choice = selection.ToString();
                 logger.Info("User choice: {Choice}", choice);
 
-                if (choice == "1") // display the categories
+                if (choice == "1") // display the products
                 {
                     Prod.DisplayAllProd displayallProd = new Prod.DisplayAllProd();
                 }
 
-                else if (choice == "2") // Add a category
+                else if (choice == "2") // Add a product
                 {
                     Prod.AddProd addProd = new Prod.AddProd();
                 }
 
-                else if (choice == "3")  // Display the category and its products
+                else if (choice == "3")  // Display product detail
                 {
                     Prod.DisplayAProd displayaProd = new Prod.DisplayAProd();
                 }

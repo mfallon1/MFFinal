@@ -16,6 +16,14 @@ namespace MFFinal
             string choice = "";
             char selection;
 
+            int width = Console.WindowWidth;
+            int height = Console.WindowHeight;
+
+            //Console.WriteLine(Console.WindowWidth);
+            //Console.WriteLine(Console.WindowHeight);
+
+            Console.SetWindowSize(100, 60);  // change size of the window
+
             do
             {
                 var menu = new Menu();  // display the menu and return the selection

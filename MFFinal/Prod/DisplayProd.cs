@@ -7,9 +7,27 @@ using System.Linq;
 
 namespace MFFinal.Prod
 {
-    class DisplayProd
+    internal class DisplayProd
     {
-        public static string DisplayProdSel() // display all the categories
+
+        public DisplayProd() // display all the Products
+        {
+            var db = new NorthwindContext();
+            var query = db.Products.OrderBy(p => p.ProductID);
+
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("NORTHWIND Category & Products - Display all PRODUCTS\n");
+            Console.WriteLine($"There are {query.Count()} Products:");
+            foreach (var item in query)
+            {
+                Console.WriteLine($"\t{item.ProductID}) - {item.ProductName}");
+            }
+
+            Console.Write("Press any key to continue . . . ");
+            Console.ReadKey(true);
+        }
+        public static string DisplayProdSel() // display all the Products
         {
             var db = new NorthwindContext();
             var query = db.Products.OrderBy(p => p.ProductID);
@@ -19,7 +37,7 @@ namespace MFFinal.Prod
             {
                 Console.WriteLine($"{item.ProductID}) - {item.ProductName}");
             }
-            Console.WriteLine("Type the Product ID and press ENTER:");
+            Console.WriteLine("\nType the Product ID and press ENTER:");
             string prodid = Console.ReadLine();
             return prodid;
         }

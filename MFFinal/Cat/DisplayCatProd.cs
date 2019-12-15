@@ -13,15 +13,18 @@ namespace MFFinal
         public DisplayCatProd()
         {
             var db = new NorthwindContext();
-
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("NORTHWIND Category & Products - Display Category and related Products\n");
             Console.WriteLine("Type the Category Id and Press ENTER:");
-
+            try
+            { 
             int id = int.Parse(DisplayCat.DispCatSel()); // display the list of categories
 
             Console.Clear();
+            Console.WriteLine("NORTHWIND Category & Products - Display Category and related Products\n");
             logger.Info($"CategoryId {id} selected");
-            try
-            {
+
                 Category category = db.Categories.FirstOrDefault(c => c.CategoryId == id);
                 Console.WriteLine($"You chose {category.CategoryName} - {category.Description}");
 
@@ -32,11 +35,17 @@ namespace MFFinal
                     if (!p.Discontinued)
                     Console.WriteLine($"\t{p.ProductName}");
                 }
+                Console.Write("Press any key to continue . . . ");
+                Console.ReadKey(true);
             }
             catch
             {
                 logger.Info("Error in Selection");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"** Error - Try again");
+                Console.ResetColor();
+                Console.Write("Press any key to continue . . . ");
+                Console.ReadKey(true);
             }
         }
     }

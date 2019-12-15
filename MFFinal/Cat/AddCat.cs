@@ -14,6 +14,9 @@ namespace MFFinal
 
         public AddCat()
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("NORTHWIND Category & Products - Add a CATEGORY\n");
             Category category = new Category();
             Console.WriteLine("Enter Category Name:");
             category.CategoryName = Console.ReadLine();
@@ -31,7 +34,9 @@ namespace MFFinal
                 var erro = db.GetValidationErrors();
                 if (erro.Any()) //added in class
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(erro);
+                    Console.ResetColor();
                 }
 
                 // check for unique name
@@ -51,11 +56,14 @@ namespace MFFinal
             {
                 foreach (var result in results)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}");
                     Console.WriteLine($"ERROR: {result.ErrorMessage}");
+                    Console.ResetColor();
                 }
             }
-
+            Console.Write("Press any key to continue . . . ");
+            Console.ReadKey(true);
         }
     }
 }

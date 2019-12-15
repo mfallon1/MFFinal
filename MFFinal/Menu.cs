@@ -11,6 +11,7 @@ namespace MFFinal
         public Menu()
         {
             // display choices to user
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("NORTHWIND Category & Products - What would you like to do?");
             Console.WriteLine();

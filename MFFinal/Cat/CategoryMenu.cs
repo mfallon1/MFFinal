@@ -10,6 +10,7 @@ namespace MFFinal
         public CategoryMenu()
         {
             // display choices to user
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("NORTHWIND Category & Products - CATEGORIES");
             Console.WriteLine();
