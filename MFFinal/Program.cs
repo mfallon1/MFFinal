@@ -17,30 +17,35 @@ namespace MFFinal
             string choice = "";
             char selection;
 
-
-            Console.SetWindowSize(100, 40);  // change size of the window
-
-            do
+            try
             {
-                var menu = new Menu();  // display the menu and return the selection
-                selection = char.ToLower(menu.GetInput());
-                if (selection.Equals('q'))
-                {
-                    break;
-                }
-                choice = selection.ToString();
-                logger.Info("User choice: {Choice}", choice);
 
-                if (choice == "1") //  categories
+                Console.SetWindowSize(100, 40);  // change size of the window
+            }
+            catch
+            { }
+            do
                 {
-                    var categorymain = new CategoryMain();
-                }
-                else if (choice == "2") // Products
-                {
-                    var productmain = new ProductMain();
-                }
+                    var menu = new Menu();  // display the menu and return the selection
+                    selection = char.ToLower(menu.GetInput());
+                    if (selection.Equals('q'))
+                    {
+                        break;
+                    }
+                    choice = selection.ToString();
+                    logger.Info("User choice: {Choice}", choice);
 
-            } while (!selection.Equals('q'));
+                    if (choice == "1") //  categories
+                    {
+                        var categorymain = new CategoryMain();
+                    }
+                    else if (choice == "2") // Products
+                    {
+                        var productmain = new ProductMain();
+                    }
+
+                } while (!selection.Equals('q'));
+
         }
     }
 }
