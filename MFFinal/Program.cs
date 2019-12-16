@@ -18,7 +18,7 @@ namespace MFFinal
             char selection;
 
 
-            Console.SetWindowSize(100, 60);  // change size of the window
+            Console.SetWindowSize(100, 40);  // change size of the window
 
             do
             {
