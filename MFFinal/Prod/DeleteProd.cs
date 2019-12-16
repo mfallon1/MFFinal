@@ -59,12 +59,8 @@ namespace MFFinal.Prod
 
                 if (del.ToUpper() == "Y")
                 {
-                    //var dquery = db.Products.Where(p => p.ProductID == id);
-                    //foreach (var item in dquery)
-                    //{
                         db.Products.Remove(product);
                         db.SaveChanges();
-                    //}
                 }
             }
             catch
@@ -72,6 +68,7 @@ namespace MFFinal.Prod
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("** No Product selected");
                 Console.ResetColor();
+                Console.ReadLine();
             }
         }
     }

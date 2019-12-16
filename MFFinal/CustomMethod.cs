@@ -20,13 +20,23 @@ namespace MFFinal
 
         public static bool IsDec(string s)
         {
+            if (Convert.ToDecimal(s) < 0)
+            {
+                return false;
+            }
+            else
+            { 
             decimal decprice;
             if (Decimal.TryParse(s, out decprice))
-            {
+            {   
+             
                 return true;
+
             }
             else
                 return false;
+            }
+
         }
 
 

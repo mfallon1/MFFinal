@@ -23,7 +23,6 @@ namespace MFFinal
             foreach (var item in query)
             {
                 Console.WriteLine($"\n{item.CategoryName}:");
-                //                GetProductCount(item.CategoryId); // display the product count first
                 GetProductCount getProductCount = new GetProductCount(item.CategoryId); // display the product count first
 
                 foreach (Product p in item.Products) // batches of 3

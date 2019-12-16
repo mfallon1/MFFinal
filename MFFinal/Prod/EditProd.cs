@@ -28,12 +28,11 @@ namespace MFFinal.Prod
                     Console.WriteLine("NORTHWIND Category & Products - Edit PRODUCT\n");
                     Console.WriteLine("Select the Product you want to edit:");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("/n** Note: Category Id & Supplier Id cannot be edited");
+                    Console.WriteLine("\n** Note: Category Id & Supplier Id cannot be edited");
                     Console.ResetColor();
 
                 int id = int.Parse(DisplayProd.DisplayProd10()); // display the list of Products It returns the ID of the selection
-                //int id = int.Parse(DisplayProd.DisplayProdSel()); // display the list of Products It returns the ID of the selection
-
+ 
                 Console.Clear();
                     Console.WriteLine();
                     Console.WriteLine("NORTHWIND Category & Products - Edit PRODUCT\n");
@@ -268,6 +267,7 @@ namespace MFFinal.Prod
                     Console.WriteLine("* PRODUCT NOT ADDED *");
                     foreach (var result in results)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}");
                         Console.WriteLine($"ERROR: {result.ErrorMessage}");
                         Console.ResetColor();
@@ -283,7 +283,7 @@ namespace MFFinal.Prod
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     logger.Error($"no selection made");
-                    Console.WriteLine($"No Product Selected");
+                    Console.WriteLine($"Not a valid entry");
                     Console.ResetColor();
                 }
 

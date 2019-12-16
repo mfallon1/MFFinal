@@ -9,7 +9,6 @@ namespace MFFinal
 {
     public class MainClass
     {
-        //Logger logger = LogManager.GetLogger("nlog-internal.log");
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public static void Main(string[] args)
@@ -18,11 +17,6 @@ namespace MFFinal
             string choice = "";
             char selection;
 
-            int width = Console.WindowWidth;
-            int height = Console.WindowHeight;
-
-            //Console.WriteLine(Console.WindowWidth);
-            //Console.WriteLine(Console.WindowHeight);
 
             Console.SetWindowSize(100, 60);  // change size of the window
 

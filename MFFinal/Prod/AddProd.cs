@@ -21,7 +21,7 @@ namespace MFFinal.Prod
         {
             var db = new NorthwindContext();
             Product product = new Product();
-
+            Console.Clear();
             Console.WriteLine("Northwind Products - Add a Product\n");
             do
             {
@@ -341,6 +341,7 @@ namespace MFFinal.Prod
                     Console.WriteLine($"ERROR: {result.ErrorMessage}");
                 }
                 Console.ResetColor();
+                Console.ReadLine();
             }
 
         }
